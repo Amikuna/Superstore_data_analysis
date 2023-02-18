@@ -1,4 +1,4 @@
-# SampleSuperstore Data Analysis
+# Superstore Data Analysis
 This is an SQL analysis project that uses the ['SampleSuperstore'](https://www.kaggle.com/datasets/itssuru/super-store) dataset to answer a series of questions about the company's profitability, sales, and cost of products.
 # Project Description
 This project aims to analyze the 'SampleSuperstore' dataset to help the company determine its profitability and identify areas of improvement. The analysis includes answering the following questions:
