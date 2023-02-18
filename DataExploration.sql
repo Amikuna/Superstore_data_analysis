@@ -2,6 +2,26 @@ USE db
 
 SELECT * FROM SampleSuperstore
 
+--remove duplicates
+WITH dp AS(
+SELECT * ,
+ROW_NUMBER() OVER(
+PARTITION BY City,
+			 ShipMode,
+			 Segment,
+			 State,
+			 Subcategory,
+			 PostalCode,
+			 Sales,
+			 Quantity,
+			 Profit
+			 ORDER BY Sales
+) AS Row_num
+FROM SampleSuperstore
+)
+DELETE FROM dp
+WHERE Row_num>1
+
 --Which is the least profitable state?
 SELECT State, ROUND(SUM(Profit), 2) AS Total_Profit FROM SampleSuperstore
 GROUP BY State ORDER BY Total_Profit
@@ -65,3 +85,8 @@ FROM SampleSuperstore
 )
 SELECT Total_profit, Profit_after, Profit_after-Total_profit as Difference FROM diff
 --So if company stops selling poor performing products it will have $22387.14 more profit
+
+SELECT * FROM SampleSuperstore
+WHERE Sales=7.056
+
+DROP TABLE SampleSuperstore
